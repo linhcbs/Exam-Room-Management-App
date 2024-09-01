@@ -1,0 +1,498 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../../server/database/images/favicon.ico?v=1" type="image/x-icon">
+    <title>PHẦN MỀM COI THI</title>
+    <style>
+    * {
+    transition-duration: 0.5s;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0vw 5vw;
+    overflow-x: hidden;
+}
+
+#main-form {
+    display: none;
+    font-weight: bold;
+}
+
+.display-id {
+    width: 5vw;
+    font-size: 1.10vw;
+    text-align: center;
+    border: 1px solid black;
+    padding: 0px;
+    cursor: pointer;
+}
+
+img {
+    height: 5vw;
+    width: 4vw;
+    font-weight: lighter;
+    font-size: 1vw;
+}
+
+caption {
+    font-family: inherit;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1vw;
+}
+
+table {
+    font-weight: bold;
+    font-size: 2vw;
+    border-spacing: 3.5vw 0.10vw;
+    margin: auto;
+}
+ 
+
+th {
+    text-transform: uppercase;
+}
+
+#time-section {
+    width: 25vw;
+    display: flex;
+    height: 3vw;
+    margin: 0.5vw;
+    padding: 0px;
+}
+
+#start,
+#progress-bar,
+#end {
+    border: 1px solid black;
+    height: 100%;
+}
+
+#start,
+#end {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0vw 0.5vw;
+}
+
+#progress-bar {
+    width: 80%;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background-color: rgb(0, 153, 255);
+    transition: width 2s linear 1s;
+}
+
+
+#real-time {
+    height: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+}
+#users {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2vw;
+}
+#users input {
+    outline: none;
+    margin: 0.5vw 0vw;
+}
+
+#username {
+    margin-right: 3vw;
+}
+
+#post-cred {
+    border-radius: 0;
+    padding: 1vw;
+    cursor: pointer;
+}
+
+#post-cred:active {
+    background-color: #2ae082;
+} 
+    </style>
+
+<body>
+    <div id="main-form">
+        <div style="display: flex;">
+            <div>
+                <div
+                    style="display: flex; flex-direction: column; justify-content: center; align-items: center; line-height: 2vw; margin-bottom: 1vw;">
+                    <span>ỦY BAN NHÂN DÂN </span>
+                    <span>TRƯỜNG THCS BÌNH TÂY</span>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <span>THI CUỐI HỌC KÌ I</span>
+                    <span>KHỐI: 6</span>
+                    <span style="margin: 0.75vw;">MÔN: TIN HỌC</span>
+                    <span>PHÒNG: <span id="room-name"></span> </span> <br>
+                    <span style="text-align: center;">NGÀY 20 THÁNG 11 NĂM 2023 <br> THỜI GIAN: 2 PHÚT</span>
+                </div>
+                <div>
+                    <h1 id="time-runout" style="text-align: center; color: crimson; display: none;">! HẾT GIỜ LÀM BÀI!
+                    </h1>
+                </div>
+                <div>
+                    <div id="real-time">
+                    </div>
+                    <div>
+                        <div id="time-section" class="time">
+                            <div id="start" class="time"></div>
+                            <div id="progress-bar" class="time">
+                                <div id="progress"></div>
+                            </div>
+                            <div id="end" class="time"></div>
+                        </div>                        
+                        <span>Thí sinh vắng thi: </span><br>
+                        <span style="margin-right: 1vw;">SBD</span>
+                        <span>Họ và tên</span>
+                        <div id="absent">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style ="margin-left: 7vw;">
+                <div style="display: block;">
+                    <hr>
+                    <div id="room-list">
+                        
+        <hr>
+        <table id="room_1">
+            <caption style="text-align: center; font-size: 1.5vw; width:100%;">PHÒNG 1 SƠ ĐỒ CHỖ NGỒI THÍ SINH</caption>
+        
+            <tbody><tr id="room-1-row-1"><td class="display-id" id="room-1-cell-1">A001<img src="../../../server/database/photos/A001.jpg" alt="A001"></td><td class="display-id" id="room-1-cell-2">A012<img src="../../../server/database/photos/A012.jpg" alt="A012"></td><td class="display-id" id="room-1-cell-3">A013<img src="../../../server/database/photos/A013.jpg" alt="A013"></td><td class="display-id" id="room-1-cell-4">A024<img src="../../../server/database/photos/A024.jpg" alt="A024"></td><td class="display-id" id="room-1-cell-5">A025<img src="../../../server/database/photos/A025.jpg" alt="A025"></td><td class="display-id" id="room-1-cell-6">A036<img src="../../../server/database/photos/A036.jpg" alt="A036"></td></tr>
+            </tbody>
+            <tbody><tr id="room-1-row-2"><td class="display-id" id="room-1-cell-7">A002<img src="../../../server/database/photos/A002.jpg" alt="A002"></td><td class="display-id" id="room-1-cell-8">A011<img src="../../../server/database/photos/A011.jpg" alt="A011"></td><td class="display-id" id="room-1-cell-9">A014<img src="../../../server/database/photos/A014.jpg" alt="A014"></td><td class="display-id" id="room-1-cell-10">A023<img src="../../../server/database/photos/A023.jpg" alt="A023"></td><td class="display-id" id="room-1-cell-11">A026<img src="../../../server/database/photos/A026.jpg" alt="A026"></td><td class="display-id" id="room-1-cell-12">A035<img src="../../../server/database/photos/A035.jpg" alt="A035"></td></tr>
+            </tbody>
+            <tbody><tr id="room-1-row-3"><td class="display-id" id="room-1-cell-13">A003<img src="../../../server/database/photos/A003.jpg" alt="A003"></td><td class="display-id" id="room-1-cell-14">A010<img src="../../../server/database/photos/A010.jpg" alt="A010"></td><td class="display-id" id="room-1-cell-15">A015<img src="../../../server/database/photos/A015.jpg" alt="A015"></td><td class="display-id" id="room-1-cell-16">A022<img src="../../../server/database/photos/A022.jpg" alt="A022"></td><td class="display-id" id="room-1-cell-17">A027<img src="../../../server/database/photos/A027.jpg" alt="A027"></td><td class="display-id" id="room-1-cell-18">A034<img src="../../../server/database/photos/A034.jpg" alt="A034"></td></tr>
+            </tbody>
+            <tbody><tr id="room-1-row-4"><td class="display-id" id="room-1-cell-19">A004<img src="../../../server/database/photos/A004.jpg" alt="A004"></td><td class="display-id" id="room-1-cell-20">A009<img src="../../../server/database/photos/A009.jpg" alt="A009"></td><td class="display-id" id="room-1-cell-21">A016<img src="../../../server/database/photos/A016.jpg" alt="A016"></td><td class="display-id" id="room-1-cell-22">A021<img src="../../../server/database/photos/A021.jpg" alt="A021"></td><td class="display-id" id="room-1-cell-23">A028<img src="../../../server/database/photos/A028.jpg" alt="A028"></td><td class="display-id" id="room-1-cell-24">A033<img src="../../../server/database/photos/A033.jpg" alt="A033"></td></tr>
+            </tbody>
+            <tbody><tr id="room-1-row-5"><td class="display-id" id="room-1-cell-25">A005<img src="../../../server/database/photos/A005.jpg" alt="A005"></td><td class="display-id" id="room-1-cell-26">A008<img src="../../../server/database/photos/A008.jpg" alt="A008"></td><td class="display-id" id="room-1-cell-27">A017<img src="../../../server/database/photos/A017.jpg" alt="A017"></td><td class="display-id" id="room-1-cell-28">A020<img src="../../../server/database/photos/A020.jpg" alt="A020"></td><td class="display-id" id="room-1-cell-29">A029<img src="../../../server/database/photos/A029.jpg" alt="A029"></td><td class="display-id" id="room-1-cell-30">A032<img src="../../../server/database/photos/A032.jpg" alt="A032"></td></tr>
+            </tbody>
+            <tbody><tr id="room-1-row-6"><td class="display-id" id="room-1-cell-31">A006<img src="../../../server/database/photos/A006.jpg" alt="A006"></td><td class="display-id" id="room-1-cell-32">A007<img src="../../../server/database/photos/A007.jpg" alt="A007"></td><td class="display-id" id="room-1-cell-33">A018<img src="../../../server/database/photos/A018.jpg" alt="A018"></td><td class="display-id" id="room-1-cell-34">A019<img src="../../../server/database/photos/A019.jpg" alt="A019"></td><td class="display-id" id="room-1-cell-35">A030<img src="../../../server/database/photos/A030.jpg" alt="A030"></td><td class="display-id" id="room-1-cell-36">A031<img src="../../../server/database/photos/A031.jpg" alt="A031"></td></tr>
+            </tbody></table>
+        
+        <hr>
+        <table id="room_2">
+            <caption style="text-align: center; font-size: 1.5vw; width:100%;">PHÒNG 2 SƠ ĐỒ CHỖ NGỒI THÍ SINH</caption>
+        
+            <tbody><tr id="room-2-row-1"><td class="display-id" id="room-2-cell-1">A037<img src="../../../server/database/photos/A037.jpg" alt="A037"></td><td class="display-id" id="room-2-cell-2">A048<img src="../../../server/database/photos/A048.jpg" alt="A048"></td><td class="display-id" id="room-2-cell-3">A049<img src="../../../server/database/photos/A049.jpg" alt="A049"></td><td class="display-id" id="room-2-cell-4">A060<img src="../../../server/database/photos/A060.jpg" alt="A060"></td><td class="display-id" id="room-2-cell-5">A061<img src="../../../server/database/photos/A061.jpg" alt="A061"></td><td class="display-id" id="room-2-cell-6">A072<img src="../../../server/database/photos/A072.jpg" alt="A072"></td></tr>
+            </tbody>
+            <tbody><tr id="room-2-row-2"><td class="display-id" id="room-2-cell-7">A038<img src="../../../server/database/photos/A038.jpg" alt="A038"></td><td class="display-id" id="room-2-cell-8">A047<img src="../../../server/database/photos/A047.jpg" alt="A047"></td><td class="display-id" id="room-2-cell-9">A050<img src="../../../server/database/photos/A050.jpg" alt="A050"></td><td class="display-id" id="room-2-cell-10">A059<img src="../../../server/database/photos/A059.jpg" alt="A059"></td><td class="display-id" id="room-2-cell-11">A062<img src="../../../server/database/photos/A062.jpg" alt="A062"></td><td class="display-id" id="room-2-cell-12">A071<img src="../../../server/database/photos/A071.jpg" alt="A071"></td></tr>
+            </tbody>
+            <tbody><tr id="room-2-row-3"><td class="display-id" id="room-2-cell-13">A039<img src="../../../server/database/photos/A039.jpg" alt="A039"></td><td class="display-id" id="room-2-cell-14">A046<img src="../../../server/database/photos/A046.jpg" alt="A046"></td><td class="display-id" id="room-2-cell-15">A051<img src="../../../server/database/photos/A051.jpg" alt="A051"></td><td class="display-id" id="room-2-cell-16">A058<img src="../../../server/database/photos/A058.jpg" alt="A058"></td><td class="display-id" id="room-2-cell-17">A063<img src="../../../server/database/photos/A063.jpg" alt="A063"></td><td class="display-id" id="room-2-cell-18">A070<img src="../../../server/database/photos/A070.jpg" alt="A070"></td></tr>
+            </tbody>
+            <tbody><tr id="room-2-row-4"><td class="display-id" id="room-2-cell-19">A040<img src="../../../server/database/photos/A040.jpg" alt="A040"></td><td class="display-id" id="room-2-cell-20">A045<img src="../../../server/database/photos/A045.jpg" alt="A045"></td><td class="display-id" id="room-2-cell-21">A052<img src="../../../server/database/photos/A052.jpg" alt="A052"></td><td class="display-id" id="room-2-cell-22">A057<img src="../../../server/database/photos/A057.jpg" alt="A057"></td><td class="display-id" id="room-2-cell-23">A064<img src="../../../server/database/photos/A064.jpg" alt="A064"></td><td class="display-id" id="room-2-cell-24">A069<img src="../../../server/database/photos/A069.jpg" alt="A069"></td></tr>
+            </tbody>
+            <tbody><tr id="room-2-row-5"><td class="display-id" id="room-2-cell-25">A041<img src="../../../server/database/photos/A041.jpg" alt="A041"></td><td class="display-id" id="room-2-cell-26">A044<img src="../../../server/database/photos/A044.jpg" alt="A044"></td><td class="display-id" id="room-2-cell-27">A053<img src="../../../server/database/photos/A053.jpg" alt="A053"></td><td class="display-id" id="room-2-cell-28">A056<img src="../../../server/database/photos/A056.jpg" alt="A056"></td><td class="display-id" id="room-2-cell-29">A065<img src="../../../server/database/photos/A065.jpg" alt="A065"></td><td class="display-id" id="room-2-cell-30">A068<img src="../../../server/database/photos/A068.jpg" alt="A068"></td></tr>
+            </tbody>
+            <tbody><tr id="room-2-row-6"><td class="display-id" id="room-2-cell-31">A042<img src="../../../server/database/photos/A042.jpg" alt="A042"></td><td class="display-id" id="room-2-cell-32">A043<img src="../../../server/database/photos/A043.jpg" alt="A043"></td><td class="display-id" id="room-2-cell-33">A054<img src="../../../server/database/photos/A054.jpg" alt="A054"></td><td class="display-id" id="room-2-cell-34">A055<img src="../../../server/database/photos/A055.jpg" alt="A055"></td><td class="display-id" id="room-2-cell-35">A066<img src="../../../server/database/photos/A066.jpg" alt="A066"></td><td class="display-id" id="room-2-cell-36">A067<img src="../../../server/database/photos/A067.jpg" alt="A067"></td></tr>
+            </tbody></table>
+        
+        <hr>
+        <table id="room_3">
+            <caption style="text-align: center; font-size: 1.5vw; width:100%;">PHÒNG 3 SƠ ĐỒ CHỖ NGỒI THÍ SINH</caption>
+        
+            <tbody><tr id="room-3-row-1"><td class="display-id" id="room-3-cell-1">A073<img src="../../../server/database/photos/A073.jpg" alt="A073"></td><td class="display-id" id="room-3-cell-2">A084<img src="../../../server/database/photos/A084.jpg" alt="A084"></td><td class="display-id" id="room-3-cell-3">A085<img src="../../../server/database/photos/A085.jpg" alt="A085"></td><td class="display-id" id="room-3-cell-4">A096<img src="../../../server/database/photos/A096.jpg" alt="A096"></td><td class="display-id" id="room-3-cell-5">A097<img src="../../../server/database/photos/A097.jpg" alt="A097"></td><td class="display-id" id="room-3-cell-6">A108<img src="../../../server/database/photos/A108.jpg" alt="A108"></td></tr>
+            </tbody>
+            <tbody><tr id="room-3-row-2"><td class="display-id" id="room-3-cell-7">A074<img src="../../../server/database/photos/A074.jpg" alt="A074"></td><td class="display-id" id="room-3-cell-8">A083<img src="../../../server/database/photos/A083.jpg" alt="A083"></td><td class="display-id" id="room-3-cell-9">A086<img src="../../../server/database/photos/A086.jpg" alt="A086"></td><td class="display-id" id="room-3-cell-10">A095<img src="../../../server/database/photos/A095.jpg" alt="A095"></td><td class="display-id" id="room-3-cell-11">A098<img src="../../../server/database/photos/A098.jpg" alt="A098"></td><td class="display-id" id="room-3-cell-12">A107<img src="../../../server/database/photos/A107.jpg" alt="A107"></td></tr>
+            </tbody>
+            <tbody><tr id="room-3-row-3"><td class="display-id" id="room-3-cell-13">A075<img src="../../../server/database/photos/A075.jpg" alt="A075"></td><td class="display-id" id="room-3-cell-14">A082<img src="../../../server/database/photos/A082.jpg" alt="A082"></td><td class="display-id" id="room-3-cell-15">A087<img src="../../../server/database/photos/A087.jpg" alt="A087"></td><td class="display-id" id="room-3-cell-16">A094<img src="../../../server/database/photos/A094.jpg" alt="A094"></td><td class="display-id" id="room-3-cell-17">A099<img src="../../../server/database/photos/A099.jpg" alt="A099"></td><td class="display-id" id="room-3-cell-18">A106<img src="../../../server/database/photos/A106.jpg" alt="A106"></td></tr>
+            </tbody>
+            <tbody><tr id="room-3-row-4"><td class="display-id" id="room-3-cell-19">A076<img src="../../../server/database/photos/A076.jpg" alt="A076"></td><td class="display-id" id="room-3-cell-20">A081<img src="../../../server/database/photos/A081.jpg" alt="A081"></td><td class="display-id" id="room-3-cell-21">A088<img src="../../../server/database/photos/A088.jpg" alt="A088"></td><td class="display-id" id="room-3-cell-22">A093<img src="../../../server/database/photos/A093.jpg" alt="A093"></td><td class="display-id" id="room-3-cell-23">A100<img src="../../../server/database/photos/A100.jpg" alt="A100"></td><td class="display-id" id="room-3-cell-24">A105<img src="../../../server/database/photos/A105.jpg" alt="A105"></td></tr>
+            </tbody>
+            <tbody><tr id="room-3-row-5"><td class="display-id" id="room-3-cell-25">A077<img src="../../../server/database/photos/A077.jpg" alt="A077"></td><td class="display-id" id="room-3-cell-26">A080<img src="../../../server/database/photos/A080.jpg" alt="A080"></td><td class="display-id" id="room-3-cell-27">A089<img src="../../../server/database/photos/A089.jpg" alt="A089"></td><td class="display-id" id="room-3-cell-28">A092<img src="../../../server/database/photos/A092.jpg" alt="A092"></td><td class="display-id" id="room-3-cell-29">A101<img src="../../../server/database/photos/A101.jpg" alt="A101"></td><td class="display-id" id="room-3-cell-30">A104<img src="../../../server/database/photos/A104.jpg" alt="A104"></td></tr>
+            </tbody>
+            <tbody><tr id="room-3-row-6"><td class="display-id" id="room-3-cell-31">A078<img src="../../../server/database/photos/A078.jpg" alt="A078"></td><td class="display-id" id="room-3-cell-32">A079<img src="../../../server/database/photos/A079.jpg" alt="A079"></td><td class="display-id" id="room-3-cell-33">A090<img src="../../../server/database/photos/A090.jpg" alt="A090"></td><td class="display-id" id="room-3-cell-34">A091<img src="../../../server/database/photos/A091.jpg" alt="A091"></td><td class="display-id" id="room-3-cell-35">A102<img src="../../../server/database/photos/A102.jpg" alt="A102"></td><td class="display-id" id="room-3-cell-36">A103<img src="../../../server/database/photos/A103.jpg" alt="A103"></td></tr>
+            </tbody></table>
+        
+        <hr>
+        <table id="room_4">
+            <caption style="text-align: center; font-size: 1.5vw; width:100%;">PHÒNG 4 SƠ ĐỒ CHỖ NGỒI THÍ SINH</caption>
+        
+            <tbody><tr id="room-4-row-1"><td class="display-id" id="room-4-cell-1">A109<img src="../../../server/database/photos/A109.jpg" alt="A109"></td><td class="display-id" id="room-4-cell-2">A120<img src="../../../server/database/photos/A120.jpg" alt="A120"></td><td class="display-id" id="room-4-cell-3">A121<img src="../../../server/database/photos/A121.jpg" alt="A121"></td><td class="display-id" id="room-4-cell-4">A132<img src="../../../server/database/photos/A132.jpg" alt="A132"></td><td class="display-id" id="room-4-cell-5">A133<img src="../../../server/database/photos/A133.jpg" alt="A133"></td><td class="display-id" id="room-4-cell-6">A144<img src="../../../server/database/photos/A144.jpg" alt="A144"></td></tr>
+            </tbody>
+            <tbody><tr id="room-4-row-2"><td class="display-id" id="room-4-cell-7">A110<img src="../../../server/database/photos/A110.jpg" alt="A110"></td><td class="display-id" id="room-4-cell-8">A119<img src="../../../server/database/photos/A119.jpg" alt="A119"></td><td class="display-id" id="room-4-cell-9">A122<img src="../../../server/database/photos/A122.jpg" alt="A122"></td><td class="display-id" id="room-4-cell-10">A131<img src="../../../server/database/photos/A131.jpg" alt="A131"></td><td class="display-id" id="room-4-cell-11">A134<img src="../../../server/database/photos/A134.jpg" alt="A134"></td><td class="display-id" id="room-4-cell-12">A143<img src="../../../server/database/photos/A143.jpg" alt="A143"></td></tr>
+            </tbody>
+            <tbody><tr id="room-4-row-3"><td class="display-id" id="room-4-cell-13">A111<img src="../../../server/database/photos/A111.jpg" alt="A111"></td><td class="display-id" id="room-4-cell-14">A118<img src="../../../server/database/photos/A118.jpg" alt="A118"></td><td class="display-id" id="room-4-cell-15">A123<img src="../../../server/database/photos/A123.jpg" alt="A123"></td><td class="display-id" id="room-4-cell-16">A130<img src="../../../server/database/photos/A130.jpg" alt="A130"></td><td class="display-id" id="room-4-cell-17">A135<img src="../../../server/database/photos/A135.jpg" alt="A135"></td><td class="display-id" id="room-4-cell-18">A142<img src="../../../server/database/photos/A142.jpg" alt="A142"></td></tr>
+            </tbody>
+            <tbody><tr id="room-4-row-4"><td class="display-id" id="room-4-cell-19">A112<img src="../../../server/database/photos/A112.jpg" alt="A112"></td><td class="display-id" id="room-4-cell-20">A117<img src="../../../server/database/photos/A117.jpg" alt="A117"></td><td class="display-id" id="room-4-cell-21">A124<img src="../../../server/database/photos/A124.jpg" alt="A124"></td><td class="display-id" id="room-4-cell-22">A129<img src="../../../server/database/photos/A129.jpg" alt="A129"></td><td class="display-id" id="room-4-cell-23">A136<img src="../../../server/database/photos/A136.jpg" alt="A136"></td><td class="display-id" id="room-4-cell-24">A141<img src="../../../server/database/photos/A141.jpg" alt="A141"></td></tr>
+            </tbody>
+            <tbody><tr id="room-4-row-5"><td class="display-id" id="room-4-cell-25">A113<img src="../../../server/database/photos/A113.jpg" alt="A113"></td><td class="display-id" id="room-4-cell-26">A116<img src="../../../server/database/photos/A116.jpg" alt="A116"></td><td class="display-id" id="room-4-cell-27">A125<img src="../../../server/database/photos/A125.jpg" alt="A125"></td><td class="display-id" id="room-4-cell-28">A128<img src="../../../server/database/photos/A128.jpg" alt="A128"></td><td class="display-id" id="room-4-cell-29">A137<img src="../../../server/database/photos/A137.jpg" alt="A137"></td><td class="display-id" id="room-4-cell-30">A140<img src="../../../server/database/photos/A140.jpg" alt="A140"></td></tr>
+            </tbody>
+            <tbody><tr id="room-4-row-6"><td class="display-id" id="room-4-cell-31">A114<img src="../../../server/database/photos/A114.jpg" alt="A114"></td><td class="display-id" id="room-4-cell-32">A115<img src="../../../server/database/photos/A115.jpg" alt="A115"></td><td class="display-id" id="room-4-cell-33">A126<img src="../../../server/database/photos/A126.jpg" alt="A126"></td><td class="display-id" id="room-4-cell-34">A127<img src="../../../server/database/photos/A127.jpg" alt="A127"></td><td class="display-id" id="room-4-cell-35">A138<img src="../../../server/database/photos/A138.jpg" alt="A138"></td><td class="display-id" id="room-4-cell-36">A139<img src="../../../server/database/photos/A139.jpg" alt="A139"></td></tr>
+            </tbody></table>
+        
+        <hr>
+        <table id="room_5">
+            <caption style="text-align: center; font-size: 1.5vw; width:100%;">PHÒNG 5 SƠ ĐỒ CHỖ NGỒI THÍ SINH</caption>
+        
+            <tbody><tr id="room-5-row-1"><td class="display-id" id="room-5-cell-1">A145<img src="../../../server/database/photos/A145.jpg" alt="A145"></td><td class="display-id" id="room-5-cell-2">A156<img src="../../../server/database/photos/A156.jpg" alt="A156"></td><td class="display-id" id="room-5-cell-3">A157<img src="../../../server/database/photos/A157.jpg" alt="A157"></td><td class="display-id" id="room-5-cell-4">A168<img src="../../../server/database/photos/A168.jpg" alt="A168"></td><td class="display-id" id="room-5-cell-5">A169<img src="../../../server/database/photos/A169.jpg" alt="A169"></td><td class="display-id" id="room-5-cell-6">A180<img src="../../../server/database/photos/A180.jpg" alt="A180"></td></tr>
+            </tbody>
+            <tbody><tr id="room-5-row-2"><td class="display-id" id="room-5-cell-7">A146<img src="../../../server/database/photos/A146.jpg" alt="A146"></td><td class="display-id" id="room-5-cell-8">A155<img src="../../../server/database/photos/A155.jpg" alt="A155"></td><td class="display-id" id="room-5-cell-9">A158<img src="../../../server/database/photos/A158.jpg" alt="A158"></td><td class="display-id" id="room-5-cell-10">A167<img src="../../../server/database/photos/A167.jpg" alt="A167"></td><td class="display-id" id="room-5-cell-11">A170<img src="../../../server/database/photos/A170.jpg" alt="A170"></td><td class="display-id" id="room-5-cell-12">A179<img src="../../../server/database/photos/A179.jpg" alt="A179"></td></tr>
+            </tbody>
+            <tbody><tr id="room-5-row-3"><td class="display-id" id="room-5-cell-13">A147<img src="../../../server/database/photos/A147.jpg" alt="A147"></td><td class="display-id" id="room-5-cell-14">A154<img src="../../../server/database/photos/A154.jpg" alt="A154"></td><td class="display-id" id="room-5-cell-15">A159<img src="../../../server/database/photos/A159.jpg" alt="A159"></td><td class="display-id" id="room-5-cell-16">A166<img src="../../../server/database/photos/A166.jpg" alt="A166"></td><td class="display-id" id="room-5-cell-17">A171<img src="../../../server/database/photos/A171.jpg" alt="A171"></td><td class="display-id" id="room-5-cell-18">A178<img src="../../../server/database/photos/A178.jpg" alt="A178"></td></tr>
+            </tbody>
+            <tbody><tr id="room-5-row-4"><td class="display-id" id="room-5-cell-19">A148<img src="../../../server/database/photos/A148.jpg" alt="A148"></td><td class="display-id" id="room-5-cell-20">A153<img src="../../../server/database/photos/A153.jpg" alt="A153"></td><td class="display-id" id="room-5-cell-21">A160<img src="../../../server/database/photos/A160.jpg" alt="A160"></td><td class="display-id" id="room-5-cell-22">A165<img src="../../../server/database/photos/A165.jpg" alt="A165"></td><td class="display-id" id="room-5-cell-23">A172<img src="../../../server/database/photos/A172.jpg" alt="A172"></td><td class="display-id" id="room-5-cell-24">A177<img src="../../../server/database/photos/A177.jpg" alt="A177"></td></tr>
+            </tbody>
+            <tbody><tr id="room-5-row-5"><td class="display-id" id="room-5-cell-25">A149<img src="../../../server/database/photos/A149.jpg" alt="A149"></td><td class="display-id" id="room-5-cell-26">A152<img src="../../../server/database/photos/A152.jpg" alt="A152"></td><td class="display-id" id="room-5-cell-27">A161<img src="../../../server/database/photos/A161.jpg" alt="A161"></td><td class="display-id" id="room-5-cell-28">A164<img src="../../../server/database/photos/A164.jpg" alt="A164"></td><td class="display-id" id="room-5-cell-29">A173<img src="../../../server/database/photos/A173.jpg" alt="A173"></td><td class="display-id" id="room-5-cell-30">A176<img src="../../../server/database/photos/A176.jpg" alt="A176"></td></tr>
+            </tbody>
+            <tbody><tr id="room-5-row-6"><td class="display-id" id="room-5-cell-31">A150<img src="../../../server/database/photos/A150.jpg" alt="A150"></td><td class="display-id" id="room-5-cell-32">A151<img src="../../../server/database/photos/A151.jpg" alt="A151"></td><td class="display-id" id="room-5-cell-33">A162<img src="../../../server/database/photos/A162.jpg" alt="A162"></td><td class="display-id" id="room-5-cell-34">A163<img src="../../../server/database/photos/A163.jpg" alt="A163"></td><td class="display-id" id="room-5-cell-35">A174<img src="../../../server/database/photos/A174.jpg" alt="A174"></td><td class="display-id" id="room-5-cell-36">A175<img src="../../../server/database/photos/A175.jpg" alt="A175"></td></tr>
+            </tbody></table>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="users">
+        <div style="display: flex;">
+            <div id="users">
+                <div style="display: flex;">
+                    <div id="username">
+                        <span>Tên phòng: </span> <br>
+                        <input type="text" id="name">
+                    </div>
+                    <div id="password">
+                        <span>Mật khẩu phòng: </span> <br>
+                        <input type="password" id="pass">
+                    </div>
+                </div>
+                <div>
+                    <input type="button" value="SUBMIT" id="post-cred">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        var element = document.getElementsByTagName("hr"), index;
+        const timeline = {"call-in-time-hour":"14","call-in-time-minute":"28","distribute-time-hour":"14","distribute-time-minute":"29","near-end-time":"5 phút"}
+        const names = {"A001":"Nguyễn Quỳnh  An","A002":"Ngô Quỳnh  Anh","A003":"Nguyễn Ngọc Minh  Châu","A004":"Trương Khánh Quỳnh  Châu","A005":"Đỗ Phúc Nguyên  Chương","A006":"Đường Hạo  Dương","A007":"Tô Vĩnh  Hào","A008":"Dư Gia  Hân","A009":"Trần Nguyễn Gia  Hân","A010":"Đỗ Quang  Huy","A011":"Giang Bảo  Khanh","A012":"Đoàn Quang  Khánh","A013":"Võ Kiều Anh  Khôi","A014":"Trần Phúc  Lâm","A015":"Đặng Nguyễn Gia  Lộc","A016":"Lưu Hồng  Minh","A017":"Đào Hoàng Ngọc  My","A018":"Hồ Bảo  Ngân","A019":"Đoàn Hoàng Vĩnh  Nghi","A020":"Huỳnh Trần Thanh  Ngọc","A021":"Trần Thái Thảo  Nguyên","A022":"Võ Phúc  Nguyên","A023":"Trần Ngọc An  Nhi","A024":"Nguyễn Cát An  Nhiên","A025":"Nguyễn Mạnh  Phú","A026":"Lai Mỹ  Quỳnh","A027":"Vũ Quốc  Thái","A028":"Nguyễn Quỳnh  Thư","A029":"Vương Ái  Thư","A030":"Phạm Minh  Triết","A031":"Lê Trần Đức  Tuấn","A032":"Thái Lưu Đình  Tuyên","A033":"Bùi Quốc Khải  Tường","A034":"Lê Thiện  Vương","A035":"Đỗ Khánh  Vy","A036":"undefined undefined","A037":"Trần Thiên  An","A038":"Nguyễn Ngọc Loan  Anh","A039":"Vũ Phạm Vân  Anh","A040":"Nguyễn Thành  Ân","A041":"Trần Ngọc Diệp  Chi","A042":"Bàng Bá  Cường","A043":"Lê Tiến  Dũng","A044":"Phạm Minh  Đăng","A045":"Lâm Gia  Hảo","A046":"Nguyễn Hữu Ngọc  Hân","A047":"Trần Hoàng Nhật  Huy","A048":"Nguyễn Duy Tuấn  Khang","A049":"Trần Nguyễn Quốc  Kiệt","A050":"Trần Minh  Kỳ","A051":"Nguyễn Trường  Long","A052":"Đinh Gia  Mẫn","A053":"Nguyễn Bảo  Nam","A054":"Trần Công Khánh  Nam","A055":"Ngô Hoàng Bảo  Nhi","A056":"Trương Mỹ  Nhung","A057":"Châu Ngọc Yến  Như","A058":"Nguyễn Thành  Phát","A059":"Phùng Hào  Phong","A060":"Nguyễn Ngọc Thanh  Phúc","A061":"Nguyễn Minh  Quân","A062":"Lưu Quốc  Thái","A063":"Nguyễn Ngọc Lan  Thanh","A064":"Phạm Bá  Thanh","A065":"Phan Minh  Thiên","A066":"Thới Nguyễn Vân  Trang","A067":"Lê Hoàng Bảo  Trân","A068":"Trần Phạm Bảo  Trân","A069":"Cao Thụy Thanh  Vân","A070":"Nguyễn Hoàng Thúy  Vy","A071":"Nguyễn Quỳnh Thiên  Ý","A072":"Võ Huỳnh Ngọc  Yến","A073":"Nguyễn Hoàng Thúy  An","A074":"Đỗ Hoàng  Anh","A075":"Võ Hoàng  Bảo","A076":"Vũ Nguyễn Trí  Dũng","A077":"Hoàng Minh  Đạt","A078":"Thái Lập  Đức","A079":"Phùng Nguyễn Ngọc  Hân","A080":"Đoàn Nguyễn Ngọc  Hiếu","A081":"Lâm Khải  Huy","A082":"Lâm Quốc  Huy","A083":"Ôn Vĩnh  Khang","A084":"Dương Quốc  Khánh","A085":"Trương Phú  Kiệt","A086":"Quách Ngọc  Lệ","A087":"Nguyễn Thuỳ  Linh","A088":"Phan Nguyễn Kim  Long","A089":"Quách Gia  Mẫn","A090":"Lương Thành  Minh","A091":"Nguyễn Khang  Minh","A092":"Nguyễn Hoàng Khánh  Ngân","A093":"Phan Hoàng Kim  Ngân","A094":"Dương Mỹ  Ngọc","A095":"Phạm Gia  Nguyệt","A096":"Giản Quế  Nhi","A097":"Trần Minh Quỳnh  Như","A098":"Lưu Hùng  Phong","A099":"Châu Hào  Phú","A100":"Huỳnh Thái Đông  Phương","A101":"Nguyễn Thị Ngọc  Quỳnh","A102":"Nguyễn Lê Vân  Thi","A103":"Nguyễn Ngọc Xuân  Trang","A104":"Đoàn Nhã  Trân","A105":"Lục Gia  Tuấn","A106":"Võ Hải  Vương","A107":"Nguyễn Kiều Thiên  Ý","A108":"undefined undefined","A109":"Lê Trì Gia  An","A110":"Quan Trúc  Ân","A111":"Phan Ngọc Minh  Anh","A112":"Phạm Lê Hải  Băng","A113":"Nguyễn Ngọc Bảo  Châu","A114":"Lý Tôn  Đạt","A115":"Phòng Văn  Dũng","A116":"Huỳnh Ngọc  Hà","A117":"Vũ Hoàng Bảo  Hân","A118":"Lương Gia  Hào","A119":"Phan Đắc  Hoàng","A120":"Trần Tuấn  Huy","A121":"Lê Duy  Khang","A122":"Trần Gia  Lạc","A123":"Nguyễn Huỳnh Khánh  Lâm","A124":"Lương Khánh  Linh","A125":"Huỳnh Gia  Long","A126":"Lê Quang  Minh","A127":"Ô Kim  Mỹ","A128":"Vương Tuyết  Ngân","A129":"Lâm Phương  Nghi","A130":"Bùi Gia  Ngọc","A131":"Trang Hoàng  Nhân","A132":"Bùi Thị An  Nhiên","A133":"Nguyễn Thảo  Như","A134":"Châu Vĩnh  Phúc","A135":"Vương Ngô Kim  Phụng","A136":"Phạm Lê Kim  Phượng","A137":"Trần Hoàng  Quân","A138":"Nguyễn Hoàng Bảo  Tâm","A139":"Bùi Nhã  Thy","A140":"Lê Phạm Mây  Trắng","A141":"Hoàng Đức  Trường","A142":"Thái Minh  Tường","A143":"Nguyễn Ngọc Như  Ý","A144":"undefined undefined","A145":"Nguyễn Quỳnh  An","A146":"Ngô Quỳnh  Anh","A147":"Nguyễn Ngọc Minh  Châu","A148":"Trương Khánh Quỳnh  Châu","A149":"Đỗ Phúc Nguyên  Chương","A150":"Đường Hạo  Dương","A151":"Tô Vĩnh  Hào","A152":"Dư Gia  Hân","A153":"Trần Nguyễn Gia  Hân","A154":"Đỗ Quang  Huy","A155":"Giang Bảo  Khanh","A156":"Đoàn Quang  Khánh","A157":"Võ Kiều Anh  Khôi","A158":"Trần Phúc  Lâm","A159":"Đặng Nguyễn Gia  Lộc","A160":"Lưu Hồng  Minh","A161":"Đào Hoàng Ngọc  My","A162":"Hồ Bảo  Ngân","A163":"Đoàn Hoàng Vĩnh  Nghi","A164":"Huỳnh Trần Thanh  Ngọc","A165":"Trần Thái Thảo  Nguyên","A166":"Võ Phúc  Nguyên","A167":"Trần Ngọc An  Nhi","A168":"Nguyễn Cát An  Nhiên","A169":"Nguyễn Mạnh  Phú","A170":"Lai Mỹ  Quỳnh","A171":"Vũ Quốc  Thái","A172":"Nguyễn Quỳnh  Thư","A173":"Vương Ái  Thư","A174":"Phạm Minh  Triết","A175":"Lê Trần Đức  Tuấn","A176":"Thái Lưu Đình  Tuyên","A177":"Bùi Quốc Khải  Tường","A178":"Lê Thiện  Vương","A179":"Đỗ Khánh  Vy","A180":"undefined undefined","A181":"Quách Minh  Anh","A182":"Mạch Thiên  Bảo","A183":"Lê Nguyễn Thùy  Dương","A184":"Võ Quỳnh  Giang","A185":"Phan Trần Gia  Hân","A186":"Đặng Như  Hạnh","A187":"Lăng Tú  Hào","A188":"Nguyễn Hoàng  Khang","A189":"Nguyễn Hoàng Bảo  Khang","A190":"Nguyễn Minh  Khang","A191":"Nguyễn Gia  Khôi","A192":"Huỳnh Chấn  Kiệt","A193":"Nguyễn Thiên  Kim","A194":"Viên Khang  Lâm","A195":"Vũ Chí  Lân","A196":"Phạm Nguyên Đức  Long","A197":"Phan Võ Bảo  Long","A198":"Nguyễn Trần Bình  Minh","A199":"Trần Nguyễn Bảo  Ngân","A200":"Trương Bảo  Nghi","A201":"Phạm Nguyễn Bảo  Ngọc","A202":"Võ Thùy  Nhi","A203":"Mã Tấn Thanh  Phúc","A204":"Nguyễn Phạm Hoàng  Quân","A205":"Nguyễn Phước  Quý","A206":"Lạc Trí  Sâm","A207":"Trương Trung  Thái","A208":"Huỳnh Ngọc Anh  Thư","A209":"Mạch Khánh  Thy","A210":"Hồ Ngọc  Trân","A211":"Trần Lê Hồng  Trúc","A212":"Hứa Kim  Vân","A213":"Nguyễn Ngọc Khánh  Vy","A214":"Lê Võ Hoàng  Yến","A215":"undefined undefined","A216":"undefined undefined","A217":"Nguyễn Hoàng Thiên  Ân","A218":"Trần Mai  Anh","A219":"Đặng Quý  Châu","A220":"Tô Kim  Chi","A221":"Trần Quốc  Cường","A222":"Dương Huỳnh  Đạt","A223":"Nguyễn Thị Mỹ  Duyên","A224":"Lê Hoàng Ngọc  Hân","A225":"Nguyễn Gia  Hân","A226":"Dương Thái  Hòa","A227":"Phan Gia  Hoàng","A228":"Nguyễn Phúc  Hưng","A229":"Nguyễn Gia  Khiêm","A230":"Quách Minh  Khôi","A231":"Lâm Hoàng  Long","A232":"Phan Phi  Long","A233":"Lý Tuấn  Mạnh","A234":"Đinh Ngọc  Minh","A235":"Văn Tiến  Minh","A236":"Nguyễn Trà  My","A237":"Lê Khánh  Ngọc","A238":"Nguyễn Bích  Nhi","A239":"Trần Huỳnh Kim  Như","A240":"Lâm Hạo  Phong","A241":"Lâm Mỹ  Phương","A242":"Nguyễn Ngọc Nhã  Quân","A243":"Lâm Phú  Quý","A244":"Nguyễn Tiến  Thành","A245":"Đỗ Ngọc Anh  Thư","A246":"Nguyễn Ngọc Bảo  Trân","A247":"Đặng Phạm Nhã  Trang","A248":"Trần Huỳnh  Vương","A249":"Trần Lệ  Yến","A250":"undefined undefined","A251":"undefined undefined","A252":"undefined undefined","A253":"Trần Minh  Anh","A254":"Vương Gia  Bảo","A255":"Trịnh Gia  Đạt","A256":"La Mỹ  Duyên","A257":"Nguyễn Ngọc Quỳnh  Giang","A258":"Châu Hoàng Thiên  Hải","A259":"Giang Gia  Hân","A260":"Lê Quyền  Hưng","A261":"Bùi Nhật  Huy","A262":"Nguyễn Kim  Khanh","A263":"Hoàng  Khánh","A264":"Trần Minh  Khiêm","A265":"Dương Gia  Kỳ","A266":"Nguyễn Gia  Lạc","A267":"Trần Ngọc  Linh","A268":"Giang Nguyễn Minh  Long","A269":"Đại Gia  Minh","A270":"Phan  Nam","A271":"Nguyễn Tiêu Kim  Ngân","A272":"Dương Thanh  Nghị","A273":"Nguyễn Thị Kim  Ngọc","A274":"Nguyễn Thượng  Nhân","A275":"Đặng Linh  Nhi","A276":"Trần Lý Lan  Phương","A277":"Quách Minh  Quân","A278":"Thái Phan Như  Quỳnh","A279":"Dư Phương  Thảo","A280":"Trần Đỗ Ngọc  Thiên","A281":"Phan Ngọc Minh  Thư","A282":"Đỗ Minh  Triều","A283":"Trần Huỳnh Phương  Trinh","A284":"Trần Thanh  Trúc","A285":"Nguyễn Võ Tường  Vy","A286":"undefined undefined","A287":"undefined undefined","A288":"undefined undefined","A289":"Nguyễn Lê Minh  Anh","A290":"Nguyễn Ngọc Khánh  Băng","A291":"Trần Quang  Bằng","A292":"Mai Gia  Bảo","A293":"Âu Tiểu  Đình","A294":"Văn Minh  Đức","A295":"Thái Gia  Hân","A296":"Lê Vĩnh  Hào","A297":"Hà Ngọc  Hiền","A298":"Lê Quang  Huy","A299":"Huỳnh Tấn  Khang","A300":"Nguyễn Đăng  Khôi","A301":"Nhan Tuấn  Kiệt","A302":"Đinh Nguyễn  Kim","A303":"Ngô Linh  Lam","A304":"Từ Gia  Linh","A305":"Lâm Văn  Long","A306":"Tạ Thị Phương  Mai","A307":"Quách Tuệ  Mẫn","A308":"Trần Hoàng  Nam","A309":"Nguyễn Vương Quế  Nghi","A310":"Nguyễn Lê Thanh  Ngọc","A311":"Hồ Duy  Nhân","A312":"Bùi Minh Ngọc  Nhi","A313":"Nguyễn Gia  Phúc","A314":"Đàm Nguyễn Thục  Phương","A315":"Nguyễn Hòa Hương  Quỳnh","A316":"Từ Tuấn  Tài","A317":"Nguyễn Hữu  Thịnh","A318":"Nguyễn Ngọc Minh  Thông","A319":"Huỳnh Anh  Tuấn","A320":"Phạm Ngọc Thanh  Tuyền","A321":"Ngô Thanh  Vân","A322":"Trần Phương  Vy","A323":"undefined undefined","A324":"undefined undefined","A325":"Bùi Thụy Hồng  Ân","A326":"Nguyễn Hoàng  Anh","A327":"Hồ Thiên  Bảo","A328":"Phạm Minh  Châu","A329":"Trần Bảo  Châu","A330":"Trần Nhã  Đan","A331":"Nguyễn Kim  Đạt","A332":"Phan Đặng Doanh  Doanh","A333":"Nguyễn Võ Phương  Duy","A334":"Mã Gia  Hân","A335":"Trần Lê Bảo  Hân","A336":"Trương Thiên  Hỷ","A337":"Phạm Phương  Khanh","A338":"Hoàng Khánh  Khiêm","A339":"Võ Minh  Khôi","A340":"Đào Gia  Linh","A341":"Lâm Gia  Long","A342":"Phạm Ngọc Thảo  My","A343":"Nguyễn Khánh  Nam","A344":"Nguyễn Mai  Ngân","A345":"Đoàn Thiên  Ngọc","A346":"Lâm Bảo  Nhi","A347":"Lưu Quỳnh  Nhi","A348":"Nguyễn An  Nhiên","A349":"Dương Minh  Phúc","A350":"Lâm Mỹ  Quân","A351":"Nguyễn Như  Quỳnh","A352":"Tiêu Tấn  Tài","A353":"Cao Duy Hưng  Thịnh","A354":"Thái Gia  Toàn","A355":"Đặng Minh  Triết","A356":"Huỳnh Gia  Tuấn","A357":"Nguyễn Thái Nhật  Uyên","A358":"Trần Gia  Vỹ","A359":"undefined undefined","A360":"undefined undefined","A361":"Nguyễn Đặng Ngọc  Anh","A362":"Nguyễn Đỗ Tường  Ân","A363":"Nguyễn Nguyên  Giáp","A364":"Nguyễn Ngọc Vân  Hà","A365":"Nguyễn Phú  Hào","A366":"Hồ Gia  Hân","A367":"Huỳnh Nguyễn Gia  Huy","A368":"Hồ Trọng  Khang","A369":"Nguyễn Phước  Khang","A370":"Đặng Thiên  Khánh","A371":"Mã Anh  Kiệt","A372":"Lê Mạc Trúc  Lam","A373":"Trịnh Phương  Linh","A374":"Lý Bá  Long","A375":"Trương Gia  Mỹ","A376":"Trần Ngọc Kim  Ngân","A377":"Nguyễn Trần Phương  Nghi","A378":"Nguyễn Phạm Trung  Nghĩa","A379":"Phan Huỳnh Minh  Ngọc","A380":"Huỳnh Minh  Nhật","A381":"Huỳnh Mẫn  Nhi","A382":"Lâm Huỳnh Phương  Như","A383":"Trần Gia  Phong","A384":"Nguyễn Kim  Phú","A385":"Đặng Nhật  Quân","A386":"Huỳnh Bảo  Sang","A387":"Đỗ Thị Minh  Thảo","A388":"Hứa Phước  Thịnh","A389":"Nguyễn Ngọc Bảo  Trân","A390":"Phan Nguyễn Thanh  Trọng","A391":"Phan Lê  Tuấn","A392":"Nguyễn Huỳnh Thiên  Vân","A393":"Lý Tuấn  Vĩ","A394":"Dương Thành  Vũ","A395":"undefined undefined","A396":"undefined undefined","A397":"Trần Kim  Anh","A398":"Bành Thiên  Bảo","A399":"Chu Quốc  Bảo","A400":"Lương Ý  Cầm","A401":"Lương Bảo  Di","A402":"Trần Trí  Dũng","A403":"Nguyễn Hiếu  Đạo","A404":"Liên Ánh  Đình","A405":"Nguyễn Gia  Hiếu","A406":"Lý Xuân  Hy","A407":"Đỗ Phúc  Khang","A408":"Quách Chấn  Lâm","A409":"Lư Đồng Mỹ  Linh","A410":"Phan Nguyễn Ngọc  Linh","A411":"Dương Hoàng  Long","A412":"Phan Nguyễn Thảo  My","A413":"Nguyễn Hoàng  Nam","A414":"Phan Nguyễn Bảo  Nghi","A415":"Lâm Phối  Ngọc","A416":"Trần Kim Bảo  Ngọc","A417":"Nguyễn Bảo  Như","A418":"Nguyễn Kim  Oanh","A419":"Lý Hân  Phi","A420":"Bành Thiên  Phước","A421":"Trương Kim  Phượng","A422":"Trần Phối  Quân","A423":"Viên Minh  Tiến","A424":"Thái Lê Khương  Thịnh","A425":"Lý Bảo  Trân","A426":"Tô Ngọc  Trân","A427":"Trương Nhã  Uyên","A428":"Nguyễn Cẩm  Vân","A429":"Trương Bảo  Vy","A430":"undefined undefined","A431":"undefined undefined","A432":"undefined undefined","A433":"Nguyễn Phước  An","A434":"Đàm Kim  Anh","A435":"Đoàn Hà  Anh","A436":"Nguyễn Khánh  Băng","A437":"Nguyễn Trần Nhật  Băng","A438":"Trần Thiên  Bảo","A439":"Lin Hồng  Đào","A440":"Nguyễn Tuấn  Đạt","A441":"Phù Phương  Đình","A442":"Chong Gia  Huệ","A443":"Nguyễn Đỗ Ngọc  Linh","A444":"Nguyễn Khánh  Ly","A445":"Lâm Tuệ  Mẫn","A446":"Lý Khánh  Ngân","A447":"Huỳnh Bảo  Nghi","A448":"Lý Tú  Nghi","A449":"Quách Bội  Ngọc","A450":"Nguyễn Tống Khải  Nguyên","A451":"Diệp Thúy  Oanh","A452":"Châu Trọng  Phát","A453":"Phạm Thế  Phong","A454":"Trần Cẩm  Quyền","A455":"Lai Uyển  Thanh","A456":"Phan Nguyễn Gia  Thanh","A457":"Đào Minh  Thuận","A458":"Trương Ngọc Bảo  Trâm","A459":"Nguyễn Ngọc  Trân","A460":"Trương Ngọc Thủy  Trúc","A461":"Huỳnh Ngọc Thanh  Vân","A462":"Trần Tuấn  Văn","A463":"Ngô Nguyễn Anh  Vinh","A464":"Lý Nguyễn Nhất  Vương","A465":"Dương Uyển  Vy","A466":"Phan Hồng  Xuân","A467":"undefined undefined","A468":"undefined undefined"}
+        let minBeforeStart = 5, runned = 0;
+        let beginRunned = 0;
+        let zone = 0, soundPath = "";
+            if (timeline["near-end-time"] == "5 phút") {
+                zone = 5;
+                soundPath = "../../../server/database/sounds/near-end-5.mp3"
+            }
+            if (timeline["near-end-time"] == "15 phút") {
+                zone = 15;
+                soundPath = "../../../server/database/sounds/near-end-15.mp3"
+            }
+            if (timeline["near-end-time"] == "30 phút") {
+                zone = 30;
+                soundPath = "../../../server/database/sounds/near-end-30.mp3"
+            }
+
+        let absents = {
+
+        }
+        let called = [0, 0, 0]
+
+        for (index = element.length - 1; index >= 0; index--) {
+            element[index].parentNode.removeChild(element[index]);
+        }    
+        const creds = {"room_1":{"username":"room_1","password":"xyz"},"room_2":{"username":"room_2","password":"abc"},"room_3":{"username":"room_3","password":"abc"},"room_4":{"username":"room_4","password":"abc"},"room_5":{"username":"room_5","password":"abc"}}
+                document.getElementById("post-cred").addEventListener("click", () => {
+                    let room_num = 1;
+                    let name = document.getElementById("name").value.trim()
+                    let pass = document.getElementById("pass").value.trim()
+                    let known = false;
+                    for (let obj in creds) {
+                        let e = creds[obj]
+                        if (e.username == name && e.password == pass) {
+                            known = renderRoom(obj);
+                            document.getElementById("room-name").innerHTML = room_num;
+                            return;
+                        }
+                        room_num++;
+                    }
+                    if (known == false) alert("THÔNG TIN ĐĂNG NHẬP SAI")
+                })
+
+
+        function renderRoom (id){
+            document.getElementById("main-form").style.display = "flex";
+            document.getElementById("users").style.display = "none";
+            let rooms = Object.keys(creds).length;
+            for (let i = 1; i <= rooms; i++){
+                let name = "room_" + i;
+                if (name == id) continue;
+                else {
+                    document.getElementById(name).remove();
+                }
+            }
+        }
+        function formatTime(hour, min) {
+            if (min < 10) return hour + ":0" + min;
+            else return hour + ":" + min;
+        }
+
+        function announce(path) {
+            let audio = new Audio(path);
+            audio.play();
+        }
+
+        // man im ded
+        function timeValue(h, m) {
+            return h * 60 * 60 + m * 60;
+        }
+
+        function blastNearEnd(tn, te){
+            if ((te - tn) <= zone*60){
+                announce(soundPath)
+                return 1;
+            }
+            return 0;
+        }
+
+        function getDiff(start_hour, start_min, end_hour, end_min, h, m, s) {
+            let ts = timeValue(start_hour, start_min);
+            let te = timeValue(end_hour, end_min);
+            let tn = timeValue(h, m) + s;
+            let call_in = timeValue(Number(timeline["call-in-time-hour"]), Number(timeline["call-in-time-minute"]))
+            let distribute = timeValue(Number(timeline["distribute-time-hour"]), Number(timeline["distribute-time-minute"]))
+
+            if (tn > call_in && called[0] == 0){
+                announce("../../../server/database/sounds/call-in.mp3")
+                called[0]++;
+            }
+            if (tn > distribute && called[1] == 0){
+                announce("../../../server/database/sounds/distribute the papers.mp3")
+                called[1]++;
+            }
+            if (called[2] == 0){
+                called[2] += blastNearEnd(tn, te);
+            }
+            if (tn > ts && beginRunned == 0) {
+                announce("../../../server/database/sounds/begin.mp3")
+                document.getElementById("room-list").style.display = "none";
+                beginRunned++;
+            }
+            else if (tn >= te) {
+                return 1;
+            }
+            else {
+                // console.log((tn-ts)/(te-ts)*1.0)
+                return ((tn - ts) / (te - ts)) * 1.0;
+            }
+        }
+
+        function startClock(start_hour, start_min, end_hour, end_min) {
+            var element = document.getElementById("progress-bar");
+            var width = 1;
+            var identity = setInterval(scene, 500);
+            function scene() {
+                if (width >= 100) {
+                    width = 100;
+                    clearInterval(identity);
+                    element.innerHTML = '<div id="progress" style="width: ' + 100 + '%;"></div>'
+                    announce("../../../server/database/sounds/announcement (end).mp3")
+                    document.getElementById("time-runout").style.display = "block"
+                } else {
+                    const today = new Date();
+                    let h = today.getHours();
+                    let m = today.getMinutes();
+                    let s = today.getSeconds();
+                    width = getDiff(start_hour, start_min, end_hour, end_min, h, m, s) * 100;
+                    element.innerHTML = '<div id="progress" style="width: ' + width + '%;"></div>'
+                }
+            }
+        }
+
+        function writeTime(start_hour, start_min, end_hour, end_min) {
+            document.getElementById("start").innerHTML = formatTime(start_hour, start_min);
+            document.getElementById("end").innerHTML = formatTime(end_hour, end_min);
+
+            startClock(start_hour, start_min, end_hour, end_min)
+        }
+
+        function check(i) {
+            if (i < 10) return '0' + i;
+            return i;
+        }
+
+        function startPermanentClock() {
+            let id = setInterval(scene, 800);
+            function scene() {
+                const today = new Date();
+                let h = today.getHours();
+                let m = today.getMinutes();
+                let s = today.getSeconds();
+                document.getElementById("real-time").innerHTML = check(h) + ':' + check(m) + ':' + check(s);
+            }
+        }
+        function renderAbsents() {
+            document.getElementById("absent").innerHTML = ""
+            for (let id in absents){
+                document.getElementById("absent").innerHTML +=  "<span>" +id+ ": " + absents[id]+" </span> <br>"
+            }
+        }
+
+        startPermanentClock()
+        writeTime(14, 30, 14, 35)
+
+        let ids = {};
+        let activate = {};
+
+        let rooms = document.getElementsByTagName("table").length;
+        for (let room = 1; room <= rooms; room++) {
+            ids["room_" + room] = [];
+            activate["room_" + room] = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,];
+            for (let i = 0; i < 36; i++) {
+                ids["room_" + room].push(document.getElementById("room-" + room + "-cell-" + (i + 1)).textContent)
+            }
+        }
+
+        for (let room = 1; room <= rooms; room++) {
+            for (let i = 0; i < 36; i++) {
+                let cell = document.getElementById("room-" + room + "-cell-" + (i + 1))
+                cell.addEventListener("click", (e) => {
+                    let obj;
+                    if (e.target.tagName != "TD") obj = e.target.parentNode;
+                    else obj = e.target;
+
+                    let dis = activate["room_" + room][i];
+                    if (activate["room_" + room][i] == false) activate["room_" + room][i] = true;
+                    else if (activate["room_" + room][i] == true) activate["room_" + room][i] = false;
+                    if (dis == false && ids["room_" + room][i] != "") {
+                        obj.innerHTML = ids["room_" + room][i] + '<p> vắng <br> ' + names[ids["room_" + room][i]] + '</p>'
+                        absents[ids["room_" + room][i]] = names[ids["room_" + room][i]];
+                    }
+                    else if (dis == true && ids["room_" + room][i] != "") {
+                        obj.innerHTML = ids["room_" + room][i] + '<img src="../../../server/database/photos/' + ids["room_" + room][i] + '.jpg" alt="">'
+                        delete absents[ids["room_" + room][i]]
+                    }
+                    renderAbsents();
+
+                })
+            }
+        }
+
+    </script>
+</body>
+
+</html>
+    

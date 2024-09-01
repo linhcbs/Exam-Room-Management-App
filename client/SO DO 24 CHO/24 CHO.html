@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24 CHO</title>
+    <style>
+    *{
+        transition-duration: 0.5s;
+    }
+    
+    body{
+        font-family: 'Times New Roman', Times, serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    input{
+        font-family: 'Times New Roman', Times, serif;
+    }
+    
+    #main-form{
+        display: flex;
+        font-weight: bold;  
+        box-shadow: 5px 10px 10px #00000027;
+    
+    }
+    
+    .primitive-id, .display-id{
+        border-radius: 0%;
+        outline: none;
+        height: 3vw;
+        width: 7vw;
+        font-size: 2vw;
+        text-align: center;
+        border: 1px solid black;
+    }
+    
+    .caption{
+        font-family: inherit;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5vw;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    table{
+        font-weight: bold;
+        font-size: 2vw;
+        border-spacing: 2vw 0.25vw;
+        margin: auto;
+    }
+    
+    th {
+        text-transform: uppercase;
+    }
+    
+    td{
+        padding: 0px;
+    }
+    
+    #info {
+        height: inherit;
+        background-color: #5cce93;
+        padding: 1vw;
+        display: flex;
+        flex-direction: column;
+        color: white;
+        font-size: 1.25vw;
+    }
+    
+    .info-field{
+        outline: none;
+        border-width: 0px 0px 2px 0px;
+        height: 2vw;
+        width: 4vw;
+        background-color: rgb(243, 243, 243);
+        font-size: 1.5vw;
+        text-align: center;
+    }
+    
+    input{
+        transition-duration: 0.2s;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    input[type="text"]:focus{
+        background-color: rgba(128, 128, 128, 0.153);
+        border-bottom: 2px solid rgb(16, 0, 137);
+    }
+    
+    #get-id-btn{
+        border: none;
+        color: white;
+        background-color:rgba(58, 207, 58, 0.836);
+        border-radius: 5%;
+        height: 4vw;
+        width: 7vw;
+        font-size: 1.75vw;
+        transition-duration: 0.2s;
+        cursor: pointer;
+    }
+    
+    #get-id-btn:hover{
+        background-color:rgba(0, 0, 0, 0.068);
+        font-weight: bold;
+    }
+    img{
+        height: 8vw;
+        width: 6vw;
+        font-weight: lighter;
+        font-size: 1vw;
+    }
+    
+    #id-form-caption{
+        display: flex;
+        width: inherit;
+    }
+    
+    #save-btn{
+        margin-left: auto;
+        margin-right: 2vw;
+    }
+    
+    .common-btn{
+        border-radius: 0px;
+        border: none;
+        outline: none;
+        padding: 0.5vw 1vw;
+        font-size: 1.5vw;
+        cursor:     pointer;
+        background-color: #5cce93;
+        color: white;
+    }
+    .common-btn:hover{
+        background-color: #2ae082;
+    }
+    .common-btn:active{
+        background-color: #00ff7b;
+    }
+    
+    #get-remove-btn{
+        font-size: 1vw;
+        border: 1px solid rgb(0, 99, 33);
+    }
+    
+    #time-section{
+        width: 50vw;
+        display: flex;
+        height: 3vw;
+        margin: 0.5vw;
+        padding: 0px;
+    }
+    
+    #start, #progress-bar, #end{
+        border: 1px solid black;
+        height: 100%;
+    }
+    
+    #start, #end{
+        width: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #progress-bar{
+        width: 80%;
+    }
+    
+    #progress{
+        height: 100%;
+        width: 0%;
+        background-color: rgb(0, 153, 255);
+        transition: width 2s linear 1s;
+    }
+    
+    
+    #real-time{
+        height: 2vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .field-text{
+        background-color: none;
+    
+    }
+    
+    
+    #header-inp input{
+        margin: 1vw 0vw;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid black;
+        height: 1.5vw;
+        color: white;
+        background-color: transparent;
+        font-size: 1.25vw;
+        width: 10vw;
+        text-align: center;
+    }
+    
+    #users{
+        border: 1px solid black;
+        display: none;
+        flex-direction: column;
+        padding: 2vw;
+    }
+
+    #users input{
+        outline: none;
+        margin: 0.5vw 0vw;
+    }
+    #username{
+        margin-right: 3vw;
+    }
+
+    #post-cred{
+        border-radius: 0;
+        padding: 1vw;
+        cursor: pointer;
+    }
+    #post-cred:active{
+        background-color: #2ae082;
+    }
+    
+    </style>
+    <link rel="shortcut icon" href="../../server/database/images/favicon.ico" type="image/x-icon">
+<body>
+    <div id="main-form">
+        <form id="info">
+            <div>
+                <label for="room-id"  >Nhập số phòng: </label>
+                <input type="text" name="room-id" id="room-id" class="info-field" maxlength="3">
+            </div>
+            <div id="header-inp">
+                <div>
+                    <label for="school">Tên trường: </label>
+                    <input type="text" name="school" id="school">
+                </div>
+                <div>
+                    <label for="subject">Môn thi: </label>
+                    <input type="text" name="subject" id="subject">
+                </div>
+                <div>
+                    <label for="grade">Khối: </label>
+                    <input type="text" name="grade" id="grade">
+                </div>
+                <div>
+                    <label for="period">Kỳ thi: </label>
+                    <input type="text" name="period" id="period">
+                </div>
+                <div>
+                    <label for="exam-date">Ngày thi:</label>
+                    <input type="date" name="exam-date" id="exam-date">
+                </div>
+                <div>
+                    <label for="time-restrain">Thời gian làm bài: </label>
+                    <br>
+                    <input type="text" name="time-restrain" id="time-restrain">
+                    phút
+                </div>
+                <div style = "margin-bottom: 1vw;">
+                    <label for="call-in-time"  >Giờ gọi thí sinh vào phòng thi: </label> <br>
+                    <input type="text" name="call-in-time-hour" id="call-in-time-hour" class="info-field" min = "1" max="24" style="width: 2.5vw;"> giờ
+                    <input type="text" name="call-in-time-minute" id="call-in-time-minute" class="info-field" min = "1" max="24" style="width: 2.5vw;" value = "0"> phút
+                </div>
+                <div style = "margin-bottom: 1vw;">
+                    <label for="distribute-time"  >Giờ phát đề cho thí sinh: </label> <br>
+                    <input type="text" name="distribute-time-hour" id="distribute-time-hour" class="info-field" min = "1" max="24" style="width: 2.5vw;"> giờ
+                    <input type="text" name="distribute-time-minute" id="distribute-time-minute" class="info-field" min = "1" max="24" style="width: 2.5vw;" value = "0"> phút
+                </div>
+                
+                <div style = "margin-bottom: 1vw;">
+                    <label for="start-time"  >Bắt đầu làm bài: </label>
+                    <input type="text" name="start-time-hour" id="start-time-hour" class="info-field" min = "1" max="24" style="width: 2.5vw;"> giờ
+                    <input type="text" name="start-time-minute" id="start-time-minute" class="info-field" min = "1" max="24" style="width: 2.5vw;" value = "0"> phút
+                </div>
+                <div style = "margin-bottom: 1vw;">
+                    <label for="near-end"  >Nhắc thí sinh gần hết giờ làm bài trước: </label> <br>
+                    <select id="near-end-time">
+                        <option value="5 phút" selected>5 phút</option>
+                        <option value="15 phút">15 phút</option>
+                        <option value="30 phút">30 phút</option>
+                    </select>
+                    <!-- <input type="text" name="near-end-time-hour" id="near-end-time-hour" class="info-field" min = "1" max="24" style="width: 2.5vw;"> giờ -->
+                    <!-- <input type="text" name="near-end-time-minute" id="near-end-time-minute" class="info-field" min = "1" max="24" style="width: 2.5vw;" value = "0"> phút -->
+                </div>
+                <div>
+                    <label for="end-time"  >Kết thúc: </label>
+                    <input type="text" name="end-time-hour" id="end-time-hour" class="info-field"  min = "1" max="24"  style="width: 2.5vw;"> giờ
+                    <input type="text" name="end-time-minute" id="end-time-minute" class="info-field"  min = "1" max="24"  style="width: 2.5vw;" value = "0"> phút
+                </div>
+            </div>
+            <div style = "margin: 1vw 0vw;  ">
+                <label for="formats"  >Chọn mẫu: </label>
+                <select id="formats">
+                    <option value="chưa chọn" selected>chưa chọn</option>
+                </select>
+            </div>
+            <div></div>
+            <div style = "margin: 1vw 0vw;">
+                <label for="del-formats"  >Xóa mẫu: </label>
+                <select id="del-formats">
+                    <option value="chưa chọn" selected>chưa chọn</option>
+                </select>
+                <input type="button" value="Xóa" id="get-remove-btn" class="common-btn">
+            </div>
+            <div>
+                <input type="button" value="Submit" id="get-id-btn">
+            </div>
+        </form>
+
+        <div style="margin: 1vw;">
+        <!-- DISPLAY ONLY FOR ID SHEET -->
+            <div id="headers" style="font-weight: 900;">
+                <div style="width: fit-content; display: flex; flex-direction: column; justify-content: center; align-items: center; line-height: 2vw; margin-bottom: 1vw;">
+                    <span>ỦY BAN NHÂN DÂN QUẬN 6</span>
+                    <span>TRƯỜNG THCS</span>
+                </div>
+                <div style="width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <span>THI </span>
+                    <span>KHỐI: </span>
+                    <span style="margin: 0.75vw;">MÔN: </span>
+                    <span style="text-align: center;">NGÀY  THÁNG  NĂM  <br> THỜI GIAN:  PHÚT</span>
+                </div>
+            </div>
+            <div id="real-time">
+            </div>
+            <div>
+                <div id="time-section" class="time">
+                    <div id="start" class="time"></div>
+                    <div id="progress-bar" class="time">
+                        <div id="progress"></div>
+                    </div>
+                    <div id="end" class="time"></div>
+                </div>
+
+                <div style="margin: auto;">
+                    <div id="id-form-caption">
+                        <p class="caption" style="margin-left: 2vw; margin-right:auto; ">Nhập sơ đồ:</p>
+    
+                        <input type="button" value="Thêm mẫu" id="save-btn" class="common-btn">
+                    </div>
+    
+                    <table id="primitive-id-sheet">
+                        <!-- <tr id="sheet-titles">
+                        </tr> -->
+                    </table>
+                </div>
+            </div>
+
+            <div id = "formats-list">
+                <hr>
+                <p class="caption" style="margin-left: 2vw; text-align: left; ">Mẫu:</p>
+                <table id="primitive-id-sheet">
+                    
+                </table>
+            </div>
+
+        <!-- DISPLAY: NONE -->
+            <div style="display: none;">
+                <hr>
+                <p class="caption">Sơ đồ SBD</p>
+                <div id="room-list">
+                    <table id="display-processed-id" class="room">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="users">
+        <div style="display: flex;">
+            <div id="username">
+                <span>Tên phòng: </span> <br> 
+            </div>
+            <div id="password">
+                <span>Mật khẩu phòng: </span> <br> 
+            </div>
+        </div>
+        <div>
+            <input type="button" value="SUBMIT" id="post-cred">
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+
+</body>
+
+</html> 
