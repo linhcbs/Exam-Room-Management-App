@@ -1,8 +1,10 @@
-<h3>WHAT IS THIS? </h3>
-Đây là một web app được code năm 2023 để Hỗ trợ, sắp xếp, in ấn, điểm danh,... các công việc liên quan về quản lí phòng thi cho các kỳ thi.
+# APP QUẢN LÍ SƠ PHÒNG THI
+(tên repo hơi sai sai)
 
+## Mô tả
+- Một app quản lí sở phòng thi đơn giản.
+- Chức năng:
 
--------------
-Mot phan mem ho tro sap xep, quan li cac phong thi duoc viet vao 2023 (sort of). Va dong bui den gio :vv
-
-what is this shiet
+## Cách chạy
+- Nằm trong file word hướng dẫn.
+- 
