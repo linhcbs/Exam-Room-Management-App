@@ -1,5 +1,4 @@
-# APP QUẢN LÍ SƠ PHÒNG THI
-(tên repo hơi sai sai)
+# Exam Room Management App (App quản lí phòng thi)
 
 ## Mô tả
 - Một app quản lí sở phòng thi đơn giản.
