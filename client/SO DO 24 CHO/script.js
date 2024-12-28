@@ -14,7 +14,7 @@ const url = "http://127.0.0.1:3000/"
 let rooms_info = {};
 let minBeforeStart = 5, runned = 0;
 let beginRunned = 0,
-    department = "QUẬN 6";
+    department = "QUẬN x";
 let credentials = {}
 let wait = 0;
 

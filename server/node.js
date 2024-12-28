@@ -880,7 +880,7 @@ function appendSection(obj, length, rows, cols, file_path){
         <div style="margin: 1vw; width: 100%; " class="container">
             <div
                 style="width: fit-content; display: flex; flex-direction: column; justify-content: center; line-height: 200%; margin-bottom: 2vw;">
-                <h2>ỦY BAN NHÂN DÂN QUẬN 6</h2>
+                <h2>ỦY BAN NHÂN DÂN</h2>
                 <h2>TRƯỜNG THCS ${obj.school.toUpperCase()}</h2>
             </div>
             <div style="width: 75%; margin: auto;">
