@@ -14,6 +14,11 @@
 - Có thanh thời gian chạy theo thời gian thực.  
 ...
 
+## Tech stack
+- Ngôn ngữ lập trình: JS
+- front-end: HTML, CSS, JS
+- back-end: NodeJS (ExpressJS)
+
 ## Cách chạy 
 -- Tải nodejs
 ### 1. Setup
